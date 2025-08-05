@@ -34,12 +34,12 @@ jobs:
         databricks workspace import --language PYTHON app.py /Workspace/Users/michael.lotfy@skillsoft.com/newpr/app.py 
 
 
-    - name: Sync files to Databricks  
-      env:  
-        DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}  
-        DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}  
-      run: |  
-        databricks sync --watch . /Workspace/Users/michael.lotfy@skillsoft.com/newpr/app.py  
+    # - name: Sync files to Databricks  
+    #   env:  
+    #     DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}  
+    #     DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}  
+    #   run: |  
+    #     databricks sync --watch . /Workspace/Users/michael.lotfy@skillsoft.com/newpr/app.py  
   
     - name: Deploy the app  
       env:  
