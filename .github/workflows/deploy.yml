@@ -25,8 +25,8 @@ jobs:
         DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}  
       run: |  
         # Import directory to Databricks  
-        # Adjust the command based on the latest CLI syntax  
-        databricks workspace import -f DBC -d . /Workspace/Users/michael.lotfy@skillsoft.com/DatabricksProject  
+        # Ensure correct syntax for importing directories  
+        databricks workspace import . /Workspace/Users/michael.lotfy@skillsoft.com/DatabricksProject  
           
         # Optional: Install dependencies if needed  
         pip install -r requirements.txt  
