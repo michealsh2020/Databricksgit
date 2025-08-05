@@ -25,7 +25,7 @@ jobs:
         DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}  
       run: |  
         # Create the directory if it doesn't exist  
-        databricks workspace mkdirs /Workspace/Users/michael.lotfy@skillsoft.com/DatabricksProject  
+        databricks workspace mkdirs /Workspace/Users/michael.lotfy@skillsoft.com/newpr  
           
         # Import the app.py file to the workspace  
-        databricks workspace import --language PYTHON app.py /Workspace/Users/michael.lotfy@skillsoft.com/DatabricksProject/app.py  
+        databricks workspace import --language PYTHON app.py /Workspace/Users/michael.lotfy@skillsoft.com/newpr/app.py  
