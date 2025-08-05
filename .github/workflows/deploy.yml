@@ -23,8 +23,8 @@ jobs:
       run: |  
         databricks configure --token  
       env:  
-        DATABRICKS_HOST: "https://adb-3930579399366806.6.azuredatabricks.net"  
-        DATABRICKS_TOKEN: "dapie624462569ae4bbb5728b1c175c0b59a-3"  
+        DATABRICKS_HOST: 'https://adb-3930579399366806.6.azuredatabricks.net' 
+        DATABRICKS_TOKEN: 'dapie624462569ae4bbb5728b1c175c0b59a-3'  
 
     - name: Deploy to Databricks  
       run: |  
