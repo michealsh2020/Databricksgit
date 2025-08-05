@@ -31,13 +31,16 @@ jobs:
       run: |
         databricks configure --host $DATABRICKS_HOST --token $DATABRICKS_TOKEN
 
-    - name: Create workspace directory
-      run: |
-        databricks workspace mkdirs /Workspace/Users/michael.lotfy@skillsoft.com/newpr
-
-    - name: Upload app.py to workspace
-      run: |
-        databricks workspace import --language PYTHON --format SOURCE app.py /Workspace/Users/michael.lotfy@skillsoft.com/newpr/app.py
+    - name: Deploy to Databricks  
+      env:  
+        DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}  
+        DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}  
+      run: |  
+        # Create the directory if it doesn't exist  
+        databricks workspace mkdirs /Workspace/Users/michael.lotfy@skillsoft.com/newpr  
+          
+        # Import the app.py file to the workspace  
+        databricks workspace import --language PYTHON app.py /Workspace/Users/michael.lotfy@skillsoft.com/newpr/app.py 
 
     - name: Sync Databricks App
       run: |
