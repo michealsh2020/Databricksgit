@@ -49,4 +49,4 @@ jobs:
 
     - name: Deploy Databricks App  
       run: |  
-        databricks apps deploy my-app-name --source-code-path /Workspace/Users/michael.lotfy@skillsoft.com/newpr/app01  
+        databricks apps deploy my-app-name --source-code-path /Workspace/Users/michael.lotfy@skillsoft.com/newpr  
