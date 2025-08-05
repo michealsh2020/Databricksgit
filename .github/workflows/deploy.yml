@@ -42,6 +42,11 @@ jobs:
 #         # Import the app.py file to the workspace  
 # #        databricks workspace import --language PYTHON app.py /Workspace/Users/michael.lotfy@skillsoft.com/newpr/app.py 
 
-    - name: Sync Databricks App
-      run: |
-        databricks apps sync --watch . /Workspace/Users/michael.lotfy@skillsoft.com/newpr/app.yaml
+#     - name: Sync Databricks App
+#       run: |
+# #        databricks apps sync --watch . /Workspace/Users/michael.lotfy@skillsoft.com/newpr/app.yaml
+#          databricks apps deploy my-app-name --source-code-path /Workspace/Users/michael.lotfy@skillsoft.com/newpr/app01
+
+    - name: Deploy Databricks App  
+      run: |  
+        databricks apps deploy my-app-name --source-code-path /Workspace/Users/michael.lotfy@skillsoft.com/newpr/app01  
