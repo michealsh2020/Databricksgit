@@ -44,4 +44,4 @@ jobs:
 
     - name: Sync Databricks App
       run: |
-        databricks apps sync --watch /Workspace/Users/michael.lotfy@skillsoft.com/newpr/app.yaml
+        databricks apps sync --watch . /Workspace/Users/michael.lotfy@skillsoft.com/newpr/app.yaml
