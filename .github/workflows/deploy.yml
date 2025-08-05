@@ -24,9 +24,8 @@ jobs:
         DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}  
         DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}  
       run: |  
-        # Import directory to Databricks  
-        # Ensure correct syntax and options for importing  
-        databricks workspace import --language PYTHON . /Workspace/Users/michael.lotfy@skillsoft.com/DatabricksProject  
+        # Import app.py to Databricks  
+        databricks workspace import --language PYTHON app.py /Workspace/Users/michael.lotfy@skillsoft.com/DatabricksProject/app.py  
           
         # Optional: Install dependencies if needed  
         pip install -r requirements.txt  
