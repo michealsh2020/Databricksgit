@@ -1,49 +1,41 @@
-name: Deploy to Databricks  
-  
-on:  
-  push:  
-    branches:  
-      - main  
-  workflow_dispatch:  
-  
-jobs:  
-  deploy:  
-    runs-on: ubuntu-latest  
-  
-    steps:  
-    - name: Checkout code  
-      uses: actions/checkout@v2  
-  
-    - name: Set up Python  
-      uses: actions/setup-python@v2  
-      with:  
-        python-version: '3.x'  
-  
-    - name: Install Databricks CLI  
-      run: pip install --upgrade databricks-cli  
-      
-    - name: Deploy to Databricks  
-      env:  
-        DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}  
-        DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}  
-      run: |  
-        # Create the directory if it doesn't exist  
-        databricks workspace mkdirs /Workspace/Users/michael.lotfy@skillsoft.com/newpr  
-          
-        # Import the app.py file to the workspace  
-        databricks workspace import --language PYTHON app.py /Workspace/Users/michael.lotfy@skillsoft.com/newpr/app.py 
+name: Deploy to Databricks
 
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
-    # - name: Sync files to Databricks  
-    #   env:  
-    #     DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}  
-    #     DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}  
-    #   run: |  
-    #     databricks sync --watch . /Workspace/Users/michael.lotfy@skillsoft.com/newpr/app.py  
-  
-    - name: Deploy the app  
-      env:  
-        DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}  
-        DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}  
-      run: |  
-        databricks apps deploy your-app-name --source-code-path /Workspace/Users/michael.lotfy@skillsoft.com/newpr/app.py  
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install Databricks CLI (new version)
+      run: pip install --upgrade databricks-cli databricks-sdk
+
+    - name: Configure Databricks CLI
+      env:
+        DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+        DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+      run: |
+        databricks configure --host $DATABRICKS_HOST --token $DATABRICKS_TOKEN
+
+    - name: Create workspace directory
+      run: |
+        databricks workspace mkdirs /Workspace/Users/michael.lotfy@skillsoft.com/newpr
+
+    - name: Upload app.py to workspace
+      run: |
+        databricks workspace import --language PYTHON --format SOURCE app.py /Workspace/Users/michael.lotfy@skillsoft.com/newpr/app.py
+
+    - name: Sync Databricks App
+      run: |
+        databricks apps sync --source-path /Workspace/Users/michael.lotfy@skillsoft.com/newpr
